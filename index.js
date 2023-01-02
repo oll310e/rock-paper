@@ -1,6 +1,5 @@
 const getComputerChoice = function(){
     let randomAnswer = Math.floor(Math.random() * 3) + 1;
-    console.log(randomAnswer)
     switch (randomAnswer) {
         case 1:
             return 'rock';
@@ -10,14 +9,6 @@ const getComputerChoice = function(){
             return 'scissors';
     }
 }
-
-
-let computerChoice = getComputerChoice()
-console.log(computerChoice)
-
-let playerChoice = prompt('what is you choice?').toLowerCase()
-
-console.log(playerChoice)
 
 const gameStart = function(playerSelection, computerSelection){
     let result;
@@ -55,5 +46,29 @@ const gameStart = function(playerSelection, computerSelection){
     }
     return result
 }
+let playerScore = 0;
+let computerScore = 0;
 
-console.log(gameStart(playerChoice, computerChoice))
+for (let i = 0; i < 5; i++) {
+    let playerChoice = prompt('what is you choice?').toLowerCase()
+    while (playerChoice !== 'rock' && playerChoice !== 'paper' && playerChoice !== 'scissors') {
+        playerChoice = prompt('what is you choice?').toLowerCase()
+    }
+    let round = gameStart(playerChoice, getComputerChoice())
+    if (round == 'win') {
+        playerScore++
+    } else if (round == 'loss') {
+        computerScore++
+    } else {
+        computerScore++
+        playerScore++
+    }
+}
+
+if (playerScore > computerScore) {
+    console.log('You are the champion! :D')
+} else if (computerScore > playerScore) {
+    console.log('The computer won!') 
+} else {
+    console.log('its a draw!')
+}
